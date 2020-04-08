@@ -1,0 +1,11 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}New Auteur{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un auteur</h1>
+
+    {{ include('auteur/_form.html.twig') }}
+
+    <a href="{{ path('auteur_index') }}">Retour</a>
+{% endblock %}

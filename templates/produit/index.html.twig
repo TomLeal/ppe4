@@ -1,0 +1,39 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}Produit index{% endblock %}
+
+{% block body %}
+    <h1>Produit</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Libelle</th>
+            <th>Description</th>
+            <th>Prix HT</th>
+            <th>Stock</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.libelle }}</td>
+                <td>{{ produit.description }}</td>
+                <td>{{ produit.prixht }}</td>
+                <td>{{ produit.stock }}</td>
+                <td>
+                    <a href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun produit n'a été trouvée.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('produit_new') }}">+ Ajouter</a>
+{% endblock %}

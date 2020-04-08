@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Booktique{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ path("index") }}">Booktique</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('index_backoffice') }}">Accueil<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Produit</a>
+                <div class="dropdown-menu" style="">
+                    <a class="dropdown-item" href="{{ path('produit_index') }}">Produit</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('auteur_index') }}">Auteur</a>
+                    <a class="dropdown-item" href="{{ path('edition_index') }}">Edition</a>
+                    <a class="dropdown-item" href="{{ path('categorie_index') }}">Catégorie</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Utilisateur</a>
+                <div class="dropdown-menu" style="">
+                    <a class="dropdown-item" href="{{ path('utilisateur_index') }}">Utilisateur</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('role_index') }}">Role</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('magasin_index') }}">Magasin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Image</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <br>
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

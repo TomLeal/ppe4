@@ -1,0 +1,11 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}New Edition{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une édition</h1>
+
+    {{ include('edition/_form.html.twig') }}
+
+    <a href="{{ path('edition_index') }}">Retour</a>
+{% endblock %}

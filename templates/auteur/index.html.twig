@@ -1,0 +1,36 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}Booktique - Auteur{% endblock %}
+
+{% block body %}
+    <h1>Auteur</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for auteur in auteurs %}
+            <tr>
+                <td>{{ auteur.id }}</td>
+                <td>{{ auteur.nom }}</td>
+                <td>{{ auteur.prenom }}</td>
+                <td>
+                    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun auteur trouvé.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('auteur_new') }}">+ Ajouter</a>
+{% endblock %}

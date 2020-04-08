@@ -1,0 +1,27 @@
+index:
+    path: /
+    controller: App\Controller\PageController::index
+
+boutique:
+    path: /boutique
+    controller: App\Controller\ProduitController::boutique
+
+boutique_categorie:
+    path: /boutique/{categorie}
+    controller: App\Controller\ProduitController::boutiqueCategorie
+
+boutique_produit:
+    path: /boutique/produit/{produit}
+    controller: App\Controller\ProduitController::show
+
+inscription:
+    path: /inscription
+    controller: App\Controller\UtilisateurController::inscription
+
+connexion:
+    path: /connexion
+    controller: App\Controller\UtilisateurController::connexion
+
+index_backoffice:
+    path: /backoffice
+    controller: App\Controller\PageController::indexBackoffice

@@ -1,0 +1,11 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}New Utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un nouvel utilisateur</h1>
+
+    {{ include('utilisateur/_form.html.twig') }}
+
+    <a href="{{ path('utilisateur_index') }}">Retour</a>
+{% endblock %}

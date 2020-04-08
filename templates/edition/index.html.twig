@@ -1,0 +1,34 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}Booktique - Edition{% endblock %}
+
+{% block body %}
+    <h1>Edition</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for edition in editions %}
+            <tr>
+                <td>{{ edition.id }}</td>
+                <td>{{ edition.libelle }}</td>
+                <td>
+                    <a href="{{ path('edition_edit', {'id': edition.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucunne édition n'a été trouvée.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('edition_new') }}">+ Ajouter</a>
+{% endblock %}

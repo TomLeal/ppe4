@@ -1,0 +1,13 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}Magasin{% endblock %}
+
+{% block body %}
+    <h1>Modifier le magasin {{ magasin.nom }}</h1>
+
+    {{ include('magasin/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('magasin_index') }}">Retour</a>
+
+    {{ include('magasin/_delete_form.html.twig') }}
+{% endblock %}

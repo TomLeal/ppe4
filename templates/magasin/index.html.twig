@@ -1,0 +1,44 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}Magasin{% endblock %}
+
+{% block body %}
+    <h1>Magasin</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Horaire d'ouverture</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Nom</th>
+                <th>Téléphone</th>
+                <th>Courriel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for magasin in magasins %}
+            <tr>
+                <td>{{ magasin.id }}</td>
+                <td>{{ magasin.horaireOuverture }}</td>
+                <td>{{ magasin.longitude }}</td>
+                <td>{{ magasin.latitude }}</td>
+                <td>{{ magasin.nom }}</td>
+                <td>{{ magasin.telephone }}</td>
+                <td>{{ magasin.courriel }}</td>
+                <td>
+                    <a href="{{ path('magasin_edit', {'id': magasin.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun magasin n'a été trouvé.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('magasin_new') }}">+ Ajouter</a>
+{% endblock %}

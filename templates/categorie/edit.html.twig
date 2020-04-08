@@ -1,0 +1,13 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}Edit Categorie{% endblock %}
+
+{% block body %}
+    <h1>Modifier la catégorie {{ categorie.libelle }}</h1>
+
+    {{ include('categorie/_form.html.twig', {'button_label': 'Modifer'}) }}
+
+    <a href="{{ path('categorie_index') }}">Retour</a>
+
+    {{ include('categorie/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'basebackoffice.html.twig' %}
+
+{% block title %}Edit Utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Modifier l'utilisateur {{ utilisateur.nom }} {{ utilisateur.prenom }}</h1>
+
+    {{ include('utilisateur/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <h2>Liste des adresses</h2>
+
+    <a href="{{ path('utilisateur_index') }}">Retour</a>
+
+    {{ include('utilisateur/_delete_form.html.twig') }}
+{% endblock %}
