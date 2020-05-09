@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booktique - Mon profil{% endblock %}
+
+{% block body %}
+    <h1><b>Modifier vos informations</b></h1>
+    {{ include('profil/_info_form.html.twig', {'button_label': 'Modifier'}) }}
+{% endblock %}

@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.dateNaissance) }}
+    {{ form_row(form.courriel) }}
+    {{ form_row(form.telephone) }}
+    {{ form_row(form.motDePasse) }}
+    <div>
+        <label for="mdpConfirme">Confirmer votre mot de passe</label>
+        <input type="password" id="mdpConfirme" name="mdpConfirme">
+    </div>
+    <div>
+        <input type="checkbox" name="accepteCondition">
+        <p>Accepte notre condition.</p>
+    </div>
+
+    <button class="btn">{{ button_label|default("S'inscrire") }}</button>
+{{ form_end(form) }}

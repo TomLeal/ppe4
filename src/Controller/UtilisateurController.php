@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Adresse;
+use App\Entity\Image;
+use App\Entity\Role;
 use App\Entity\Utilisateur;
+use App\Form\ConnectionType;
+use App\Form\InscriptionType;
 use App\Form\UtilisateurType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,18 +37,50 @@ class UtilisateurController extends AbstractController
      * Page inscription
      * @Route("/inscription", name="inscription", methods={"GET","POST"})
      */
-    public function inscription(): Response
+    public function inscription(Request $request): Response
     {
-        return $this->render('utilisateur/inscription.html.twig', []);
+        $utilisateur = new Utilisateur();
+        $form = $this->createForm(InscriptionType::class, $utilisateur);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $role = $this->getDoctrine()
+                ->getRepository(Role::class)
+                ->find(1);
+            $image = $this->getDoctrine()
+                ->getRepository(Image::class)
+                ->find(1);
+
+            $utilisateur->setMotDePasse(md5($utilisateur->getMotDePasse()));
+            $utilisateur->setIdRole($role);
+            $utilisateur->setIdImage($image);
+            if (md5($_POST['mdpConfirme']) == $utilisateur->getMotDePasse()){
+                $entittManager = $this->getDoctrine()->getManager();
+                $entittManager->persist($utilisateur);
+                $entittManager->flush();
+            }
+        }
+
+        return $this->render('utilisateur/inscription.html.twig', [
+            'utilisateur' => $utilisateur,
+            'form' => $form->createView()
+        ]);
     }
 
     /**
      * Page connexion
      * @Route("/connexion", name="connexion", methods={"GET","POST"})
      */
-    public function connexion(): Response
+    public function connexion(Request $request): Response
     {
-        return $this->render('utilisateur/connexion.html.twig', []);
+        $utilisateur = new Utilisateur();
+        $form = $this->createForm(ConnectionType::class, $utilisateur);
+        $form->handleRequest($request);
+
+        return $this->render('utilisateur/connexion.html.twig', [
+            'utilisateur' => $utilisateur,
+            'form' => $form->createView()
+        ]);
     }
 
     /**
@@ -88,8 +124,6 @@ class UtilisateurController extends AbstractController
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
 
-        dump($utilisateur);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -114,5 +148,10 @@ class UtilisateurController extends AbstractController
         }
 
         return $this->redirectToRoute('utilisateur_index');
+    }
+
+    public function profil(Request $request): Response
+    {
+
     }
 }

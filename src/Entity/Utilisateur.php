@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Utilisateur
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="utilisateur", indexes={@ORM\Index(name="id_image", columns={"id_image"}), @ORM\Index(name="id_role", columns={"id_role"})})
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")⇒ @Orm\Entity(repositoryClass="App\Repository\UtilisateurRepository")
  */
-class Utilisateur
+class Utilisateur implements UserInterface
 {
     /**
      * @var int
@@ -38,7 +39,7 @@ class Utilisateur
     /**
      * @var string|null
      *
-     * @ORM\Column(name="courriel", type="string", length=50, nullable=true)
+     * @ORM\Column(name="courriel", type="string", length=50, nullable=true, unique=true)
      */
     private $courriel;
 
@@ -83,17 +84,15 @@ class Utilisateur
      */
     private $idRole;
 
-//    /**
-//     * @var \Adresse
-//     *
-//     * @ORM\ManyToMany
-//     */
-//    private $adresses;
-//
-//    public function __construct()
-//    {
-//
-//    }
+    /**
+     * @var string the clear password temporary
+     */
+    private $plainPassword;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     public function getId(): ?int
     {
@@ -197,4 +196,75 @@ class Utilisateur
     }
 
 
+    /**
+     * @see UserInterface
+     */
+    public function getRoles()
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword()
+    {
+        return (string) $this->motDePasse;
+    }
+
+    public function setPassword(string $password){
+        $this->motDePasse = $password;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getUsername()
+    {
+        return (string) $this->courriel;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 }

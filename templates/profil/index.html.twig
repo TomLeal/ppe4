@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booktique - Mon profil{% endblock %}
+
+{% block body %}
+    <h1><b>{{ app.user.nom }} {{ app.user.prenom }}</b></h1>
+    <br>
+    <h4><b>Vos informations</b> - <a href="{{ path("profli_modif_info") }}">modifier</a></h4>
+    <div>
+        <p>{{ app.user.courriel }}</p>
+        <p>{{ app.user.telephone }}</p>
+    </div>
+{% endblock %}

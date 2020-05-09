@@ -18,10 +18,10 @@ inscription:
     path: /inscription
     controller: App\Controller\UtilisateurController::inscription
 
-connexion:
-    path: /connexion
-    controller: App\Controller\UtilisateurController::connexion
-
 index_backoffice:
     path: /backoffice
     controller: App\Controller\PageController::indexBackoffice
+
+api_magasin:
+    path: /api/magasin
+    controller: App\Controller\API\APIController::apiMagasin

@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_row(form.courriel) }}
+    {{ form_row(form.motDePasse) }}
+    <button class="btn">{{ button_label|default('Connexion') }}</button>
+{{ form_end(form) }}
