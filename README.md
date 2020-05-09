@@ -6,6 +6,6 @@ Site marchand de livre crée avec Symfony.
 
 ## Avancement
 
-* Site web Symfony : **37 %**
-* Webservices : **30 %**
-* Application Android : **50 %**
+* Site web Symfony : **47 %**
+* Webservices : **50 %**
+* Application Android : **55 %**
