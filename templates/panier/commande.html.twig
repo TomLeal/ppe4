@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booktique - Commande{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Commander</h1>
+    </div>
+
+    {% if produits | length > 0 %}
+        <table class="table table-striped">
+            <thead style="background-color: #99F1F5; border: 0;">
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for produit in produits %}
+                <tr>
+                    <td>{{ produit.produit.libelle }}</td>
+                    <td>{{ produit.produit.prixht * produit.quantite }} €</td>
+                    <td>{{ produit.quantite }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total : {{ prixTotal }} €</td>
+            </tr>
+            </tfoot>
+        </table>
+
+        <a href="{{ path('panier') }}" class="btn btn-danger">Retour</a>
+        <a href="{{ path('panier_payement') }}" style="float: right;" class="btn btn-primary">Valider</a>
+    {% else %}
+        <div>Votre panier est vide</div>
+    {% endif %}
+{% endblock %}

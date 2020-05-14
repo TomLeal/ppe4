@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{# Boutique. Affiche les produits de la catégorie. #}
+
 {% block body %}
     <div>
         <h2>BOUTIQUE - {{ categorie.libelle }}</h2>
@@ -11,7 +13,11 @@
             <h4><a href="{{ path("boutique_produit", {produit: produit.id}) }}">{{ produit.libelle }}</a></h4>
             <img src="http://placehold.it/200x200" alt="Couverture de {{ produit.libelle }}">
             <h5>{{ produit.prixht }} €</h5>
-            <button class="btn btn-primary">Ajouter</button>
+            {% if is_granted('ROLE_USER') %}
+                <a class="btn btn-primary" href="{{ path("panier_ajout", {'id': produit.id}) }}">Ajouter</a>
+            {% else %}
+                <a class="btn btn-primary" href="{{ path("app_login") }}">Ajouter</a>
+            {% endif %}
         </div>
         {% endfor %}
     </div>

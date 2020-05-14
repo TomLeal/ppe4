@@ -41,3 +41,4 @@ security:
     access_control:
          - { path: ^/backoffice, roles: ROLE_ADMIN }
          - { path: ^/profil, roles: ROLE_USER }
+         - { path: ^/panier, roles: ROLE_USER }
